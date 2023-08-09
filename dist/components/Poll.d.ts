@@ -14,7 +14,7 @@ export declare type PollProps = UrbanMessageCommonData & {
     explanation?: React.ReactChild;
     livePeriodSeconds?: number;
 };
-export declare function Poll({ buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, question, children, isAnonymous, type, withMultipleAnswers, rightOption, explanation, livePeriodSeconds, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: PollProps): JSX.Element;
+export declare function Poll({ buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, question, children, isAnonymous, type, withMultipleAnswers, rightOption, explanation, livePeriodSeconds, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: PollProps): import("react/jsx-runtime").JSX.Element;
 export declare type OptionProps = OtherProps & {
     children: string;
     onClick?: (...args: unknown[]) => unknown;

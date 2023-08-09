@@ -10,4 +10,4 @@ export declare type ImageProps = UrbanMessageCommonData & {
     isNewMessageEveryRender?: boolean;
     buttons?: React.FunctionComponentElement<ButtonGroupProps>;
 };
-export declare function Image({ file, title, alt, name, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, disableNotification, replyToMessageId, forceReply, ...otherProps }: ImageProps): JSX.Element;
+export declare function Image({ file, title, alt, name, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, disableNotification, replyToMessageId, forceReply, ...otherProps }: ImageProps): import("react/jsx-runtime").JSX.Element;

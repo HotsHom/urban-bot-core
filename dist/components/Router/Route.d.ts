@@ -4,4 +4,4 @@ export declare type RouteProps = {
     description?: string;
     children: React.ReactNode;
 };
-export declare function Route(props: RouteProps): JSX.Element;
+export declare function Route(props: RouteProps): import("react/jsx-runtime").JSX.Element;

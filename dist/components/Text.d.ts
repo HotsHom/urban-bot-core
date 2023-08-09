@@ -5,4 +5,4 @@ export declare type TextProps = UrbanMessageCommonData & {
     children: React.ReactNode;
     isNewMessageEveryRender?: boolean;
 };
-export declare function Text({ children, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, disableWebPagePreview, disableNotification, replyToMessageId, forceReply, ...otherProps }: TextProps): JSX.Element;
+export declare function Text({ children, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, disableWebPagePreview, disableNotification, replyToMessageId, forceReply, ...otherProps }: TextProps): import("react/jsx-runtime").JSX.Element;

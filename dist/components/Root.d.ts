@@ -24,4 +24,4 @@ export declare type RootProps<Bot extends UrbanBot, BotType extends UrbanBotType
     initialChats?: UrbanChat[];
     onAnyEvent?: (event: UrbanSyntheticEvent<BotType>) => void;
 };
-export declare function Root<Bot extends UrbanBot = UrbanBot, BotType extends UrbanBotType = UrbanBotType>({ children, bot, sessionTimeSeconds, isNewMessageEveryRender, parseMode, port, expressApp, initialChats, onAnyEvent, }: RootProps<Bot, BotType>): JSX.Element;
+export declare function Root<Bot extends UrbanBot = UrbanBot, BotType extends UrbanBotType = UrbanBotType>({ children, bot, sessionTimeSeconds, isNewMessageEveryRender, parseMode, port, expressApp, initialChats, onAnyEvent, }: RootProps<Bot, BotType>): import("react/jsx-runtime").JSX.Element;

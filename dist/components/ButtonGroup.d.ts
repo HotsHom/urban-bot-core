@@ -10,7 +10,7 @@ export declare type ButtonGroupProps = UrbanMessageCommonData & {
     maxColumns?: number;
     children: ButtonElement | ButtonElement[] | ButtonElement[][];
 };
-export declare function ButtonGroup({ children, title, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, disableNotification, replyToMessageId, forceReply, maxColumns, isReplyButtons, ...otherProps }: ButtonGroupProps): JSX.Element;
+export declare function ButtonGroup({ children, title, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, disableNotification, replyToMessageId, forceReply, maxColumns, isReplyButtons, ...otherProps }: ButtonGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare type ButtonProps = OtherProps & {
     onClick?: (...args: unknown[]) => unknown;
     children: string;

@@ -9,4 +9,4 @@ export declare type LocationProps = UrbanMessageCommonData & {
     buttons?: React.FunctionComponentElement<ButtonGroupProps>;
     isNewMessageEveryRender?: boolean;
 };
-export declare function Location({ latitude, longitude, livePeriodSeconds, title, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: LocationProps): JSX.Element;
+export declare function Location({ latitude, longitude, livePeriodSeconds, title, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: LocationProps): import("react/jsx-runtime").JSX.Element;

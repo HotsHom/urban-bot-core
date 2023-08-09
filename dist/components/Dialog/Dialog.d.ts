@@ -14,4 +14,4 @@ export declare type DialogContextType = {
     addAnswer: DialogAddAnswer;
 };
 export declare function useDialog(): DialogContextType;
-export declare function Dialog({ children, onFinish, finishedContent }: DialogProps): JSX.Element;
+export declare function Dialog({ children, onFinish, finishedContent }: DialogProps): import("react/jsx-runtime").JSX.Element;

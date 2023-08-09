@@ -9,4 +9,4 @@ export declare type FileProps = UrbanMessageCommonData & {
     isNewMessageEveryRender?: boolean;
     name?: string;
 };
-export declare function File({ file, title, name, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: FileProps): JSX.Element;
+export declare function File({ file, title, name, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: FileProps): import("react/jsx-runtime").JSX.Element;

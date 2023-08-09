@@ -12,4 +12,4 @@ export declare type AnimationProps = UrbanMessageCommonData & {
     buttons?: React.FunctionComponentElement<ButtonGroupProps>;
     isNewMessageEveryRender?: boolean;
 };
-export declare function Animation({ file, name, height, width, buttons: buttonGroupElement, disableNotification, duration, forceReply, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, replyToMessageId, title, ...otherProps }: AnimationProps): JSX.Element;
+export declare function Animation({ file, name, height, width, buttons: buttonGroupElement, disableNotification, duration, forceReply, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, replyToMessageId, title, ...otherProps }: AnimationProps): import("react/jsx-runtime").JSX.Element;

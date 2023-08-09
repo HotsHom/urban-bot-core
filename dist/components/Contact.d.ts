@@ -10,4 +10,4 @@ export declare type ContactProps = UrbanMessageCommonData & {
     isNewMessageEveryRender?: boolean;
     buttons?: React.FunctionComponentElement<ButtonGroupProps>;
 };
-export declare function Contact({ phoneNumber, username, firstName, lastName, vCard, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, replyToMessageId, ...otherProps }: ContactProps): JSX.Element;
+export declare function Contact({ phoneNumber, username, firstName, lastName, vCard, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, replyToMessageId, ...otherProps }: ContactProps): import("react/jsx-runtime").JSX.Element;

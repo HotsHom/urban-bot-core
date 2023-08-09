@@ -13,4 +13,4 @@ export declare type VideoProps = UrbanMessageCommonData & {
     buttons?: React.FunctionComponentElement<ButtonGroupProps>;
     isNewMessageEveryRender?: boolean;
 };
-export declare function Video({ file, name, author, height, width, buttons: buttonGroupElement, disableNotification, duration, forceReply, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, replyToMessageId, title, ...otherProps }: VideoProps): JSX.Element;
+export declare function Video({ file, name, author, height, width, buttons: buttonGroupElement, disableNotification, duration, forceReply, isNewMessageEveryRender: isNewMessageEveryRenderProp, parseMode, replyToMessageId, title, ...otherProps }: VideoProps): import("react/jsx-runtime").JSX.Element;

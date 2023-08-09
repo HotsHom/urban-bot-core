@@ -11,4 +11,4 @@ export declare type AudioProps = UrbanMessageCommonData & {
     author?: string;
     buttons?: React.FunctionComponentElement<ButtonGroupProps>;
 };
-export declare function Audio({ file, name, author, title, duration, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: AudioProps): JSX.Element;
+export declare function Audio({ file, name, author, title, duration, buttons: buttonGroupElement, isNewMessageEveryRender: isNewMessageEveryRenderProp, disableNotification, forceReply, parseMode, replyToMessageId, ...otherProps }: AudioProps): import("react/jsx-runtime").JSX.Element;
