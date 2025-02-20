@@ -104,6 +104,7 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
 
     sendMessage(message: UrbanMessage): Promise<BotType['MessageMeta']> {
         const chatById = this.chats.get(message.chat.id);
+        this.sleep(200);
 
         if (chatById === undefined) {
             throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');
@@ -118,7 +119,13 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
         });
     }
 
+    sleep(ms: number): void {
+        const sharedArray = new Int32Array(new SharedArrayBuffer(4));
+        Atomics.wait(sharedArray, 0, 0, ms);
+    }
+
     async updateMessage(message: UrbanExistingMessage<BotType>) {
+        this.sleep(200);
         if (this.bot.updateMessage === undefined) {
             console.error(
                 `'${this.bot.type}' doesn't support updating message. Provide isNewMessageEveryRender prop to Root component`,
@@ -135,6 +142,7 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     }
 
     async deleteMessage(message: UrbanExistingMessage<BotType>) {
+        this.sleep(200);
         if (this.bot.deleteMessage === undefined) {
             console.error(
                 `'${this.bot.type}' doesn't support deleting message. Provide isNewMessageEveryRender prop to Root component`,
