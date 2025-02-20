@@ -68,6 +68,7 @@ class ManagerBot {
     }
     sendMessage(message) {
         const chatById = this.chats.get(message.chat.id);
+        this.sleep(200);
         if (chatById === undefined) {
             throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');
         }
@@ -80,7 +81,12 @@ class ManagerBot {
             }
         });
     }
+    sleep(ms) {
+        const sharedArray = new Int32Array(new SharedArrayBuffer(4));
+        Atomics.wait(sharedArray, 0, 0, ms);
+    }
     async updateMessage(message) {
+        this.sleep(200);
         if (this.bot.updateMessage === undefined) {
             console.error(`'${this.bot.type}' doesn't support updating message. Provide isNewMessageEveryRender prop to Root component`);
             return;
@@ -93,6 +99,7 @@ class ManagerBot {
         }
     }
     async deleteMessage(message) {
+        this.sleep(200);
         if (this.bot.deleteMessage === undefined) {
             console.error(`'${this.bot.type}' doesn't support deleting message. Provide isNewMessageEveryRender prop to Root component`);
             return;

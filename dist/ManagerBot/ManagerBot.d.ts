@@ -16,6 +16,7 @@ export declare class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     emit<Event extends UrbanSyntheticEvent<BotType> = UrbanSyntheticEvent<BotType>>(eventName: Event['type'] | 'any', event: Event, chatId?: string): void;
     removeListener<Event extends UrbanSyntheticEvent<BotType> = UrbanSyntheticEvent<BotType>>(eventName: Event['type'] | 'any', listener: UrbanListener<Event>, chatId?: string): EventEmitter;
     sendMessage(message: UrbanMessage): Promise<BotType['MessageMeta']>;
+    sleep(ms: number): void;
     updateMessage(message: UrbanExistingMessage<BotType>): Promise<any>;
     deleteMessage(message: UrbanExistingMessage<BotType>): Promise<any>;
 }
