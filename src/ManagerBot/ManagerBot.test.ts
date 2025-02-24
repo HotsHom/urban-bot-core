@@ -68,12 +68,10 @@ describe('ManagerBot', () => {
 
             testBot.sendMessage.mockReturnValue(Promise.resolve());
 
-            const res = managerBot.sendMessage(existingMessage);
+            managerBot.sendMessage(existingMessage);
 
-            return res.then(() => {
-                expect(testBot.sendMessage).toHaveBeenCalledTimes(1);
-                expect(testBot.sendMessage).toHaveBeenLastCalledWith(existingMessage);
-            });
+            expect(testBot.sendMessage).toHaveBeenCalledTimes(1);
+            expect(testBot.sendMessage).toHaveBeenLastCalledWith(existingMessage);
         });
 
         it('send two messages', () => {
@@ -83,14 +81,12 @@ describe('ManagerBot', () => {
 
             testBot.sendMessage.mockReturnValue(Promise.resolve());
 
-            const res1 = managerBot.sendMessage(newMessage);
-            const res2 = managerBot.sendMessage(newMessage2);
+            managerBot.sendMessage(newMessage);
+            managerBot.sendMessage(newMessage2);
 
-            return Promise.all([res1, res2]).then(() => {
-                expect(testBot.sendMessage).toHaveBeenCalledTimes(2);
-                expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage);
-                expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage2);
-            });
+            expect(testBot.sendMessage).toHaveBeenCalledTimes(2);
+            expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage);
+            expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage2);
         });
 
         it('send next message only when previous was finished', () => {
