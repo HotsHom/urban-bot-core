@@ -10,42 +10,14 @@ type Chat = {
     promiseQueue: PromiseQueue;
 };
 
-type SendMessageQueueType = {
-    message: UrbanMessage;
-    callback?: (result: Promise<ManagerBot<UrbanBotType>['sendMessage']>) => void;
-};
-
 export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     private chats = new Map<string, Chat>();
     private eventEmitter: EventEmitter;
-    private messageQueue: SendMessageQueueType[] = [];
-    private messageUpdateQueue: UrbanExistingMessage<BotType>[] = [];
 
     constructor(private bot: UrbanBot<BotType>) {
         this.eventEmitter = new EventEmitter();
 
         bot.processUpdate = this.processUpdate;
-        setInterval(async () => {
-            if (this.messageQueue.length) {
-                const messages = this.messageQueue.splice(
-                    0,
-                    this.messageQueue.length > 15 ? 15 : this.messageQueue.length,
-                );
-                for (const message of messages) {
-                    const result = this.executeSendMessage(message.message);
-                    message?.callback && message?.callback(result);
-                }
-            }
-            if (this.messageUpdateQueue.length) {
-                const updates = this.messageUpdateQueue.splice(
-                    0,
-                    this.messageUpdateQueue.length > 10 ? 10 : this.messageUpdateQueue.length,
-                );
-                for (const message of updates) {
-                    await this.executeUpdateMessage(message);
-                }
-            }
-        }, 30000);
     }
 
     processUpdate: ProcessUpdate<BotType> = (event) => {
@@ -130,22 +102,9 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
         }
     }
 
-    sendMessage(message: UrbanMessage, callback?: (meta: Promise<ManagerBot<BotType>['sendMessage']>) => void) {
+    sendMessage(message: UrbanMessage): Promise<BotType['MessageMeta']> {
         const chatById = this.chats.get(message.chat.id);
-        // this.sleep(200);
-
-        if (chatById === undefined) {
-            throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');
-        }
-
-        this.messageQueue.push({
-            message,
-            callback,
-        });
-    }
-
-    executeSendMessage(message: UrbanMessage) {
-        const chatById = this.chats.get(message.chat.id);
+        this.sleep(200);
 
         if (chatById === undefined) {
             throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');
@@ -166,10 +125,7 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     }
 
     async updateMessage(message: UrbanExistingMessage<BotType>) {
-        this.messageUpdateQueue.push(message);
-    }
-
-    async executeUpdateMessage(message: UrbanExistingMessage<BotType>) {
+        this.sleep(200);
         if (this.bot.updateMessage === undefined) {
             console.error(
                 `'${this.bot.type}' doesn't support updating message. Provide isNewMessageEveryRender prop to Root component`,

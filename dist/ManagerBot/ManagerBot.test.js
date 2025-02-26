@@ -50,19 +50,23 @@ describe('ManagerBot', () => {
             const managerBot = new ManagerBot_1.ManagerBot(testBot);
             managerBot.addChat(existingMessage.chat.id);
             testBot.sendMessage.mockReturnValue(Promise.resolve());
-            managerBot.sendMessage(existingMessage);
-            expect(testBot.sendMessage).toHaveBeenCalledTimes(1);
-            expect(testBot.sendMessage).toHaveBeenLastCalledWith(existingMessage);
+            const res = managerBot.sendMessage(existingMessage);
+            return res.then(() => {
+                expect(testBot.sendMessage).toHaveBeenCalledTimes(1);
+                expect(testBot.sendMessage).toHaveBeenLastCalledWith(existingMessage);
+            });
         });
         it('send two messages', () => {
             const managerBot = new ManagerBot_1.ManagerBot(testBot);
             managerBot.addChat(newMessage.chat.id);
             testBot.sendMessage.mockReturnValue(Promise.resolve());
-            managerBot.sendMessage(newMessage);
-            managerBot.sendMessage(newMessage2);
-            expect(testBot.sendMessage).toHaveBeenCalledTimes(2);
-            expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage);
-            expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage2);
+            const res1 = managerBot.sendMessage(newMessage);
+            const res2 = managerBot.sendMessage(newMessage2);
+            return Promise.all([res1, res2]).then(() => {
+                expect(testBot.sendMessage).toHaveBeenCalledTimes(2);
+                expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage);
+                expect(testBot.sendMessage).toHaveBeenCalledWith(newMessage2);
+            });
         });
         it('send next message only when previous was finished', () => {
             var _a;

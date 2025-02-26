@@ -43,9 +43,7 @@ function appendChildNode(parentNode, childNode) {
         chat: childNode.chat,
         data: childNode.data,
     };
-    childNode.sendMessage(message, (meta) => {
-        childNode.meta = meta;
-    });
+    childNode.meta = childNode.sendMessage(message);
 }
 exports.appendChildNode = appendChildNode;
 function removeChildNode(parentNode, removedNode) {
@@ -104,9 +102,7 @@ function updateNode(node, _updatePayload, _type, oldProps, newProps) {
         data: newNode.data,
     };
     if (newNode.isNewMessageEveryRender) {
-        newNode.sendMessage(message, (meta) => {
-            newNode.meta = meta;
-        });
+        node.meta = newNode.sendMessage(message);
     }
     else {
         if (node.meta === undefined) {

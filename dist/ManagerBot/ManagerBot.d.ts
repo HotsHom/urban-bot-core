@@ -8,8 +8,6 @@ export declare class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     private bot;
     private chats;
     private eventEmitter;
-    private messageQueue;
-    private messageUpdateQueue;
     constructor(bot: UrbanBot<BotType>);
     processUpdate: ProcessUpdate<BotType>;
     addChat(id: string): void;
@@ -17,10 +15,8 @@ export declare class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     on<Event extends UrbanSyntheticEvent<BotType> = UrbanSyntheticEvent<BotType>>(eventName: Event['type'] | 'any', listener: UrbanListener<Event>, chatId?: string): EventEmitter;
     emit<Event extends UrbanSyntheticEvent<BotType> = UrbanSyntheticEvent<BotType>>(eventName: Event['type'] | 'any', event: Event, chatId?: string): void;
     removeListener<Event extends UrbanSyntheticEvent<BotType> = UrbanSyntheticEvent<BotType>>(eventName: Event['type'] | 'any', listener: UrbanListener<Event>, chatId?: string): EventEmitter;
-    sendMessage(message: UrbanMessage, callback?: (meta: Promise<ManagerBot<BotType>['sendMessage']>) => void): void;
-    executeSendMessage(message: UrbanMessage): Promise<BotType["MessageMeta"]>;
+    sendMessage(message: UrbanMessage): Promise<BotType['MessageMeta']>;
     sleep(ms: number): void;
-    updateMessage(message: UrbanExistingMessage<BotType>): Promise<void>;
-    executeUpdateMessage(message: UrbanExistingMessage<BotType>): Promise<any>;
+    updateMessage(message: UrbanExistingMessage<BotType>): Promise<any>;
     deleteMessage(message: UrbanExistingMessage<BotType>): Promise<any>;
 }

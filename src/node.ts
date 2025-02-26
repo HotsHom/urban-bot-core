@@ -75,9 +75,8 @@ export function appendChildNode<BotType extends UrbanBotType>(
         chat: childNode.chat,
         data: childNode.data,
     } as UrbanMessage;
-    childNode.sendMessage(message, (meta) => {
-        childNode.meta = meta;
-    });
+
+    childNode.meta = childNode.sendMessage(message);
 }
 
 export function removeChildNode<BotType extends UrbanBotType>(
@@ -165,9 +164,7 @@ export function updateNode<BotType extends UrbanBotType>(
     } as UrbanMessage;
 
     if (newNode.isNewMessageEveryRender) {
-        newNode.sendMessage(message, (meta) => {
-            newNode.meta = meta;
-        });
+        node.meta = newNode.sendMessage(message);
     } else {
         if (node.meta === undefined) {
             throw new Error('sendMessage should return Promise with message meta data to enable updating it.');
