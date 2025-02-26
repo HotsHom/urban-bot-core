@@ -5,6 +5,7 @@ import { UrbanExistingMessage, UrbanMessage } from '../types/Messages';
 import { UrbanListener } from '../types';
 import { UrbanSyntheticEvent } from '../types/Events';
 
+
 type Chat = {
     eventEmitter: EventEmitter;
     promiseQueue: PromiseQueue;
@@ -13,6 +14,7 @@ type Chat = {
 export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     private chats = new Map<string, Chat>();
     private eventEmitter: EventEmitter;
+    private currentMessageCount = 0;
 
     constructor(private bot: UrbanBot<BotType>) {
         this.eventEmitter = new EventEmitter();
@@ -103,8 +105,9 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     }
 
     sendMessage(message: UrbanMessage): Promise<BotType['MessageMeta']> {
+        this.currentMessageCount++;
+        this.sleep(this.currentMessageCount > 20 ? 1000 : 500);
         const chatById = this.chats.get(message.chat.id);
-        this.sleep(200);
 
         if (chatById === undefined) {
             throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');
@@ -112,7 +115,10 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
 
         return chatById.promiseQueue.next<BotType['MessageMeta']>(async () => {
             try {
-                return await this.bot.sendMessage(message);
+                const meta = await this.bot.sendMessage(message);
+                this.currentMessageCount--;
+
+                return meta;
             } catch (e) {
                 console.error(e);
             }
@@ -127,7 +133,7 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     async updateMessage(message: UrbanExistingMessage<BotType>) {
         this.sleep(200);
         if (this.bot.updateMessage === undefined) {
-            console.error(
+            console.warn(
                 `'${this.bot.type}' doesn't support updating message. Provide isNewMessageEveryRender prop to Root component`,
             );
 

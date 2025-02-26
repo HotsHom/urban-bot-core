@@ -7,6 +7,7 @@ class ManagerBot {
     constructor(bot) {
         this.bot = bot;
         this.chats = new Map();
+        this.currentMessageCount = 0;
         this.processUpdate = (event) => {
             this.eventEmitter.emit('any', event);
             this.eventEmitter.emit(event.type, event);
@@ -67,14 +68,17 @@ class ManagerBot {
         }
     }
     sendMessage(message) {
+        this.currentMessageCount++;
+        this.sleep(this.currentMessageCount > 20 ? 1000 : 500);
         const chatById = this.chats.get(message.chat.id);
-        this.sleep(200);
         if (chatById === undefined) {
             throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');
         }
         return chatById.promiseQueue.next(async () => {
             try {
-                return await this.bot.sendMessage(message);
+                const meta = await this.bot.sendMessage(message);
+                this.currentMessageCount--;
+                return meta;
             }
             catch (e) {
                 console.error(e);
@@ -88,7 +92,7 @@ class ManagerBot {
     async updateMessage(message) {
         this.sleep(200);
         if (this.bot.updateMessage === undefined) {
-            console.error(`'${this.bot.type}' doesn't support updating message. Provide isNewMessageEveryRender prop to Root component`);
+            console.warn(`'${this.bot.type}' doesn't support updating message. Provide isNewMessageEveryRender prop to Root component`);
             return;
         }
         try {

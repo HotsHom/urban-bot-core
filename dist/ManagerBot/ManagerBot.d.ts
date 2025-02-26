@@ -8,6 +8,7 @@ export declare class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
     private bot;
     private chats;
     private eventEmitter;
+    private currentMessageCount;
     constructor(bot: UrbanBot<BotType>);
     processUpdate: ProcessUpdate<BotType>;
     addChat(id: string): void;
