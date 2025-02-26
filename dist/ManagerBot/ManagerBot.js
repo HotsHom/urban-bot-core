@@ -69,7 +69,7 @@ class ManagerBot {
     }
     sendMessage(message) {
         this.currentMessageCount++;
-        this.sleep(this.currentMessageCount > 20 ? 1000 : 500);
+        this.sleep(this.currentMessageCount > 20 ? 1000 : 200);
         const chatById = this.chats.get(message.chat.id);
         if (chatById === undefined) {
             throw new Error('Specify chatId via managerBot.addChat(chatId) to sendMessage for specific chat');

@@ -106,7 +106,7 @@ export class ManagerBot<BotType extends UrbanBotType = UrbanBotType> {
 
     sendMessage(message: UrbanMessage): Promise<BotType['MessageMeta']> {
         this.currentMessageCount++;
-        this.sleep(this.currentMessageCount > 20 ? 1000 : 500);
+        this.sleep(this.currentMessageCount > 20 ? 1000 : 200);
         const chatById = this.chats.get(message.chat.id);
 
         if (chatById === undefined) {
